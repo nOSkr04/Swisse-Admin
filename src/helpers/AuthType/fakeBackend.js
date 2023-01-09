@@ -90,16 +90,6 @@ const fakeBackend = () => {
   // This sets the mock adapter on the default instance
   const mock = new MockAdapter(axios, { onNoMatch: "passthrough" });
 
-  mock.onPost("/post-jwt-register").reply(config => {
-    const user = JSON.parse(config["data"]);
-    users.push(user);
-
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve([200, user]);
-      });
-    });
-  });
 
   mock.onPost("/post-jwt-login").reply(config => {
     const user = JSON.parse(config["data"]);
