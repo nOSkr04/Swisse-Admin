@@ -1,0 +1,1 @@
+export const api = "https://altanzaan.org/upload/"

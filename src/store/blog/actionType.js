@@ -1,0 +1,13 @@
+// Actions
+export const API_RESPONSE_SUCCESS = "API_RESPONSE_SUCCESS";
+export const API_RESPONSE_ERROR = "API_RESPONSE_ERROR";
+export const GET_BLOGS = "GET_BLOGS";
+
+/**
+ * Delete BLOG
+ */
+export const DELETE_BLOG = "DELETE_BLOG"
+export const DELETE_BLOG_SUCCESS = "DELETE_BLOG_SUCCESS"
+export const DELETE_BLOG_FAIL = "DELETE_BLOG_FAIL"
+
+  
