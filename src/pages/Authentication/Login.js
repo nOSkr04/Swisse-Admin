@@ -22,9 +22,7 @@ import withRouter from '../../Components/Common/withRouter';
 
 const Login = (props) => {
     const dispatch = useDispatch();
-    const { user } = useSelector(state => ({
-        user: state.Account.user,
-    }));
+ 
 
     const [userLogin, setUserLogin] = useState([]);
 
@@ -33,15 +31,6 @@ const Login = (props) => {
         document.documentElement.setAttribute("data-layout-mode", "dark")
     }, []);
 
-    useEffect(() => {
-
-        if (user && user) {
-            setUserLogin({
-                phone: user.user.phone,
-                password: user.user.confirm_password
-            });
-        }
-    }, [user]);
 
     const validation = useFormik({
         // enableReinitialize : use this flag when initial values needs to be changed
