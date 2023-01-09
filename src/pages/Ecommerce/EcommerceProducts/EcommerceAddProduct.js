@@ -140,7 +140,7 @@ const EcommerceAddProduct = (props) => {
           const xhr = new XMLHttpRequest()
           console.log(newProduct)
           if (selectedFiles[0]) {
-            data.append("file1", selectedFiles[0])
+            data.append("file", selectedFiles[0])
             xhr.open(
               "PUT",
               `https://altanzaan.org/api/v1/products/${newProduct._id}/upload-images`,
@@ -153,6 +153,13 @@ const EcommerceAddProduct = (props) => {
           //     `https://altanzaan.org/api/v1/products/${newProduct._id}/upload-images`,
           //   )
           // }
+          if (selectedFiles[2]) {
+            data.append("file1", selectedFiles[1])
+            xhr.open(
+              "PUT",
+              `https://altanzaan.org/api/v1/products/${newProduct._id}/upload-images`,
+            )
+          }
           if (selectedFiles[2]) {
             data.append("file2", selectedFiles[2])
             xhr.open(
