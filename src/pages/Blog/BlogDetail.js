@@ -127,7 +127,28 @@ function BlogDetail(props) {
                             </div>
                           </div>
                         </div>
-                  
+                        <div className="flex-shrink-0">
+                          <div>
+                            <Tooltip
+                              placement="top"
+                              isOpen={ttop}
+                              target="TooltipTop"
+                              toggle={() => {
+                                setttop(!ttop);
+                              }}
+                            >
+                              Өөрчлөх
+                            </Tooltip>
+                            <Link
+                              to={`blog-edit/${id}`}
+                              id="TooltipTop"
+                              className="btn btn-light"
+
+                            >
+                              <i className="ri-pencil-fill align-bottom"></i>
+                            </Link>
+                          </div>
+                        </div>
                       </div>
 
                       <Row className="mt-4">
