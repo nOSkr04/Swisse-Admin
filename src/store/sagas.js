@@ -8,6 +8,7 @@ import ProfileSaga from "./auth/profile/saga";
 import ecommerceSaga from "./ecommerce/saga";
 // Dashboard Ecommerce
 import dashboardEcommerceSaga from "./dashboardEcommerce/saga";
+import feedSaga from "./blog/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -17,5 +18,6 @@ export default function* rootSaga() {
     fork(ProfileSaga),
     fork(ecommerceSaga),
     fork(dashboardEcommerceSaga),
+    fork(feedSaga),
   ]);
 }

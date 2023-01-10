@@ -21,8 +21,7 @@ const ProductsGlobalFilter = () => {
                         to="/apps-ecommerce-add-product"
                         className="btn btn-primary"
                     >
-                        <i className="ri-add-line align-bottom me-1"></i> Add
-                        Product
+                        <i className="ri-add-line align-bottom me-1"></i> Нэмэх
                     </Link>
                 </div>
             </div>
@@ -30,70 +29,19 @@ const ProductsGlobalFilter = () => {
     );
 };
 const CustomersGlobalFilter = () => {
-    const [customerStatus, setcustomerStatus] = useState(null);
-
-    function handlecustomerStatus(customerStatus) {
-        setcustomerStatus(customerStatus);
-    }
-
-    const customerstatus = [
-        {
-            options: [
-                { label: "Status", value: "Status" },
-                { label: "All", value: "All" },
-                { label: "Active", value: "Active" },
-                { label: "Block", value: "Block" },
-            ],
-        },
-    ];
+    
     return (
         <React.Fragment>
-            <Col xl={7}>
-                <Row className="g-3">
-                    <Col sm={4}>
-                        <div className="">
-                            <Flatpickr
-                                className="form-control"
-                                id="datepicker-publish-input"
-                                placeholder="Select a date"
-                                options={{
-                                    altInput: true,
-                                    altFormat: "F j, Y",
-                                    mode: "multiple",
-                                    dateFormat: "d.m.y",
-                                }}
-                            />
-                        </div>
-                    </Col>
-
-                    <Col sm={4}>
-                        <div>
-                            <Select
-                                value={customerStatus}
-                                onChange={(e) => {
-                                    handlecustomerStatus(e.value);
-                                }}
-                                options={customerstatus}
-                                name="choices-single-default"
-                                id="idStatus"
-                            ></Select>
-                        </div>
-                    </Col>
-
-                    <Col sm={4}>
-                        <div>
-                            <button
-                                type="button"
-                                className="btn btn-primary w-100"
-                            >
-                                {" "}
-                                <i className="ri-equalizer-fill me-2 align-bottom"></i>
-                                Filters
-                            </button>
-                        </div>
-                    </Col>
-                </Row>
-            </Col>
+            <div className="col-sm-auto ms-auto">
+                <div>
+                    <Link
+                        to="/blog-add"
+                        className="btn btn-primary"
+                    >
+                        <i className="ri-add-line align-bottom me-1"></i>Нийтлэл нэмэх
+                    </Link>
+                </div>
+            </div>
         </React.Fragment>
     );
 };

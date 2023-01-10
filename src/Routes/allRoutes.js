@@ -17,6 +17,8 @@ import Logout from "../pages/Authentication/Logout";
 import Blogs from "../pages/Blog";
 import BlogDetail from "../pages/Blog/BlogDetail";
 import BlogAdd from "../pages/Blog/BlogAdd";
+import BlogEdit from "../pages/Blog/BlogEdit";
+import EcommerceEditProduct from "../pages/Ecommerce/EcommerceProducts/EcommerceEditProduct";
 
 
 const authProtectedRoutes = [
@@ -25,11 +27,13 @@ const authProtectedRoutes = [
   { path: "/apps-ecommerce-products", component: <EcommerceProducts /> },
   { path: "/apps-ecommerce-product-details/:id", component: <EcommerceProductDetail /> },
   { path: "/apps-ecommerce-add-product", component: <EcommerceAddProduct /> },
+  { path: "/apps-ecommerce-edit-product/:id", component: <EcommerceEditProduct /> },
   { path: "/apps-ecommerce-sellers", component: <EcommerceSellers /> },
   { path: "/apps-ecommerce-seller-details", component: <EcommerceSellerDetail /> },
   { path: "/blog", component: <Blogs /> },
   { path: "/blog-details/:id", component: <BlogDetail /> },
   { path: "/blog-add", component: <BlogAdd /> },
+  { path: "/blog-edit/:id", component: <BlogEdit /> },
   
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name

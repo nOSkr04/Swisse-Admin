@@ -32,8 +32,7 @@ SwiperCore.use([FreeMode, Navigation, Thumbs]);
 function EcommerceProductDetail(props) {
   let { id } = useParams();
   const [data, setData] = useState([]);
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const [ttop, setttop] = useState(false);
+
 
   useEffect(() => {
     axios
@@ -45,6 +44,8 @@ function EcommerceProductDetail(props) {
         console.log(err);
       });
   }, [id]);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [ttop, setttop] = useState(false);
   const [customActiveTab, setcustomActiveTab] = useState("1");
   const toggleCustom = (tab) => {
     if (customActiveTab !== tab) {
@@ -215,7 +216,7 @@ function EcommerceProductDetail(props) {
                               Өөрчлөх
                             </Tooltip>
                             <a
-                              href="apps-ecommerce-add-product"
+                              href={`apps-ecommerce-edit-product/${data.id}`}
                               id="TooltipTop"
                               className="btn btn-light"
                             >

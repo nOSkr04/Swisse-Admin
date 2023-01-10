@@ -32,12 +32,9 @@ SwiperCore.use([FreeMode, Navigation, Thumbs]);
 function BlogDetail(props) {
   let { id } = useParams();
   const [data, setData] = useState([]);
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const [ttop, setttop] = useState(false);
-
   useEffect(() => {
     axios
-      .get("https://altanzaan.org/api/v1/products/" + id)
+      .get("https://altanzaan.org/api/v1/blogs/" + id)
       .then((res) => {
         setData(res.data);
       })
@@ -45,6 +42,8 @@ function BlogDetail(props) {
         console.log(err);
       });
   }, [id]);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [ttop, setttop] = useState(false);
   const [customActiveTab, setcustomActiveTab] = useState("1");
   const toggleCustom = (tab) => {
     if (customActiveTab !== tab) {
@@ -71,43 +70,15 @@ function BlogDetail(props) {
                         className="swiper product-thumbnail-slider p-2 rounded bg-light"
                       >
                         <div className="swiper-wrapper">
-                          {data.images && (
+                          {data.thumbnail && (
                             <>
                               <SwiperSlide>
                                 <img
-                                  src={`https://altanzaan.org/upload/${data.images.image1}`}
+                                  src={`https://altanzaan.org/upload/${data.thumbnail}`}
                                   alt=""
                                   className="img-fluid d-block"
                                 />
-                                {console.log(data.images.image1)}
                               </SwiperSlide>
-                              {data.images.image2 && (
-                                <SwiperSlide>
-                                  <img
-                                    src={`https://altanzaan.org/upload/${data.images.image2}`}
-                                    alt=""
-                                    className="img-fluid d-block"
-                                  />
-                                </SwiperSlide>
-                              )}
-                              {data.images.image3 && (
-                                <SwiperSlide>
-                                  <img
-                                    src={`https://altanzaan.org/upload/${data.images.image3}`}
-                                    alt=""
-                                    className="img-fluid d-block"
-                                  />
-                                </SwiperSlide>
-                              )}
-                              {data.images.image4 && (
-                                <SwiperSlide>
-                                  <img
-                                    src={`https://altanzaan.org/upload/${data.images.image4}`}
-                                    alt=""
-                                    className="img-fluid d-block"
-                                  />
-                                </SwiperSlide>
-                              )}
                             </>
                           )}
                         </div>
@@ -123,50 +94,17 @@ function BlogDetail(props) {
                           className="swiper product-nav-slider mt-2 overflow-hidden"
                         >
                           <div className="swiper-wrapper">
-                            {data.images && (
+                            {data.thumbnail && (
                               <>
                                 <SwiperSlide className="rounded">
                                   <div className="nav-slide-item">
                                     <img
-                                      src={`https://altanzaan.org/upload/${data.images.image1}`}
+                                      src={`https://altanzaan.org/upload/${data.thumbnail}`}
                                       alt=""
                                       className="img-fluid d-block rounded"
                                     />
                                   </div>
                                 </SwiperSlide>
-                                {data.images.image2 && (
-                                  <SwiperSlide>
-                                    <div className="nav-slide-item">
-                                      <img
-                                        src={`https://altanzaan.org/upload/${data.images.image2}`}
-                                        alt=""
-                                        className="img-fluid d-block rounded"
-                                      />
-                                    </div>
-                                  </SwiperSlide>
-                                )}
-                                {data.images.image3 && (
-                                  <SwiperSlide>
-                                    <div className="nav-slide-item">
-                                      <img
-                                        src={`https://altanzaan.org/upload/${data.images.image3}`}
-                                        alt=""
-                                        className="img-fluid d-block rounded"
-                                      />
-                                    </div>
-                                  </SwiperSlide>
-                                )}
-                                {data.images.image4 && (
-                                  <SwiperSlide>
-                                    <div className="nav-slide-item">
-                                      <img
-                                        src={`https://altanzaan.org/upload/${data.images.image4}`}
-                                        alt=""
-                                        className="img-fluid d-block rounded"
-                                      />
-                                    </div>
-                                  </SwiperSlide>
-                                )}
                               </>
                             )}
                           </div>
@@ -181,19 +119,6 @@ function BlogDetail(props) {
                         <div className="flex-grow-1">
                           <h4>{data.title}</h4>
                           <div className="hstack gap-3 flex-wrap">
-                            <div>
-                              <Link to="#" className="text-primary d-block">
-                                {data.subCategory}
-                              </Link>
-                            </div>
-                            <div className="vr"></div>
-                            {/* <div className="text-muted">
-                              Katегори :{" "}
-                              <span className="text-body fw-medium">
-                                Хүүхэд
-                              </span>
-                            </div> */}
-                            <div className="vr"></div>
                             <div className="text-muted">
                               Нийтэлсэн :{" "}
                               <span className="text-body fw-medium">
@@ -202,27 +127,7 @@ function BlogDetail(props) {
                             </div>
                           </div>
                         </div>
-                        <div className="flex-shrink-0">
-                          <div>
-                            <Tooltip
-                              placement="top"
-                              isOpen={ttop}
-                              target="TooltipTop"
-                              toggle={() => {
-                                setttop(!ttop);
-                              }}
-                            >
-                              Өөрчлөх
-                            </Tooltip>
-                            <a
-                              href="apps-ecommerce-add-product"
-                              id="TooltipTop"
-                              className="btn btn-light"
-                            >
-                              <i className="ri-pencil-fill align-bottom"></i>
-                            </a>
-                          </div>
-                        </div>
+                  
                       </div>
 
                       <Row className="mt-4">
@@ -235,168 +140,22 @@ function BlogDetail(props) {
                                 </div>
                               </div>
                               <div className="flex-grow-1">
-                                <p className="text-muted mb-1">Үнэ :</p>
-                                <h5 className="mb-0">{data.price}</h5>
-                              </div>
-                            </div>
-                          </div>
-                        </Col>
-                        <Col lg={3} sm={6}>
-                          <div className="p-2 border border-dashed rounded">
-                            <div className="d-flex align-items-center">
-                              <div className="avatar-sm me-2">
-                                <div className="avatar-title rounded bg-transparent text-info fs-24">
-                                  <i className="ri-stock-fill"></i>
-                                </div>
-                              </div>
-                              <div className="flex-grow-1">
-                                <p className="text-muted mb-1">Үлдэгдэл :</p>
-                                <h5 className="mb-0">{data.stock}</h5>
-                              </div>
-                            </div>
-                          </div>
-                        </Col>
-                        <Col lg={3} sm={6}>
-                          <div className="p-2 border border-dashed rounded">
-                            <div className="d-flex align-items-center">
-                              <div className="avatar-sm me-2">
-                                <div className="avatar-title rounded bg-transparent text-info fs-24">
-                                  <i className="ri-stock-fill"></i>
-                                </div>
-                              </div>
-                              <div className="flex-grow-1">
-                                <p className="text-muted mb-1">
-                                  Төсөөллийн ашиг :
-                                </p>
-                                <h5 className="mb-0">
-                                  {data.stock * data.price}
-                                </h5>
+                                <p className="text-muted mb-1">Хандалт :</p>
+                                <h5 className="mb-0">{data.count}</h5>
                               </div>
                             </div>
                           </div>
                         </Col>
                       </Row>
+                         {data.shortDescription &&
                       <div className="mt-4 text-muted">
-                        <h5 className="fs-14">Танилцуулга :</h5>
+                        <h5 className="fs-14">Агуулга :</h5>
                         <p>
-                         {data.shortDescription}
+                          {data.shortDescription}
                         </p>
                       </div>
-
-                      {/* <Row>
-                        <Col sm={6}>
-                          <div className="mt-3">
-                            <h5 className="fs-14">Features :</h5>
-                            <ul className="list-unstyled">
-                              <li className="py-1">
-                                <i className="mdi mdi-circle-medium me-1 text-muted align-middle"></i>{" "}
-                                Full Sleeve
-                              </li>
-                              <li className="py-1">
-                                <i className="mdi mdi-circle-medium me-1 text-muted align-middle"></i>{" "}
-                                Cotton
-                              </li>
-                              <li className="py-1">
-                                <i className="mdi mdi-circle-medium me-1 text-muted align-middle"></i>{" "}
-                                All Sizes available
-                              </li>
-                              <li className="py-1">
-                                <i className="mdi mdi-circle-medium me-1 text-muted align-middle"></i>{" "}
-                                4 Different Color
-                              </li>
-                            </ul>
-                          </div>
-                        </Col>
-                        <Col sm={6}>
-                          <div className="mt-3">
-                            <h5 className="fs-14">Services :</h5>
-                            <ul className="list-unstyled product-desc-list">
-                              <li className="py-1">10 Days Replacement</li>
-                              <li className="py-1">
-                                Cash on Delivery available
-                              </li>
-                            </ul>
-                          </div>
-                        </Col>
-                      </Row> */}
-
-                      <div className="product-content mt-5">
-                        <h5 className="fs-14 mb-3">
-                          Барааны бүрэн Танилцуулга :
-                        </h5>
-                        <Nav tabs className="nav-tabs-custom nav-success">
-                          <NavItem>
-                            <NavLink
-                              style={{ cursor: "pointer" }}
-                              className={classnames({
-                                active: customActiveTab === "1",
-                              })}
-                              onClick={() => {
-                                toggleCustom("1");
-                              }}
-                            >
-                              Мэдээлэл
-                            </NavLink>
-                          </NavItem>
-                          <NavItem>
-                            <NavLink
-                              style={{ cursor: "pointer" }}
-                              className={classnames({
-                                active: customActiveTab === "2",
-                              })}
-                              onClick={() => {
-                                toggleCustom("2");
-                              }}
-                            >
-                              Дэлгэрэнгүй
-                            </NavLink>
-                          </NavItem>
-                        </Nav>
-
-                        <TabContent
-                          activeTab={customActiveTab}
-                          className="border border-top-0 p-4"
-                          id="nav-tabContent"
-                        >
-                          <TabPane id="nav-speci" tabId="1">
-                            <div className="table-responsive">
-                              <table className="table mb-0">
-                                <tbody>
-                                  <tr>
-                                    <th scope="row" style={{ width: "200px" }}>
-                                      Category
-                                    </th>
-                                    <td>Мэдээлэл</td>
-                                  </tr>
-                                  {/* <tr>
-                                    <th scope="row">Brand</th>
-                                    <td>Tommy Hilfiger</td>
-                                  </tr> */}
-                                 
-                                  <tr>
-                                    <th scope="row">Орц</th>
-                                    <td>{data.ingredients}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Хэмжээ</th>
-                                    <td>{data.weight}</td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </div>
-                          </TabPane>
-                          <TabPane id="nav-detail" tabId="2">
-                            <div>
-                              <h5 className="font-size-16 mb-3">
-                                {data.title}
-                              </h5>
-                              <p>
-                              {data.description}
-                              </p>
-                            </div>
-                          </TabPane>
-                        </TabContent>
-                      </div>
+                         }
+                      {data.description && <div dangerouslySetInnerHTML={{__html: data.description}} style={{marginTop:20}} />}
                     </div>
                   </Col>
                 </Row>

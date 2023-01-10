@@ -33,11 +33,9 @@ import { ToastContainer } from "react-toastify";
 const Blogs = (props) => {
   document.title = "Алтан заан ХХК || Нийтлэлнууд";
   const dispatch = useDispatch();
-
   const { blogs } = useSelector((state) => ({
-    blogs: state.Ecommerce.blogs,
+    blogs: state.Feed.blogs,
   }));
-
 
   const [productList, setProductList] = useState([]);
   const [activeTab, setActiveTab] = useState("1");
@@ -59,31 +57,6 @@ const Blogs = (props) => {
   useEffect(() => {
     if (!isEmpty(blogs)) setProductList(blogs);
   }, [blogs]);
-
-  const toggleTab = (tab, type) => {
-    if (activeTab !== tab) {
-      setActiveTab(tab);
-      let filteredBlogs = blogs;
-      if (type !== "all") {
-        filteredBlogs = blogs.filter((product) => product.status === type);
-      }
-      setProductList(filteredBlogs);
-    }
-  };
-
-  const [cate, setCate] = useState("all");
-
-  const categories = (category) => {
-    let filteredBlogs = blogs;
-    if (category !== "all") {
-      filteredBlogs = blogs.filter((product) => product.subCategory === category);
-    }
-    setProductList(filteredBlogs);
-    setCate(category);
-  };
-
-
-
 
   //delete order
   const [deleteModal, setDeleteModal] = useState(false);
@@ -153,7 +126,7 @@ const Blogs = (props) => {
               <div className="flex-grow-1">
                 <h5 className="fs-14 mb-1">
                   <Link
-                    to={`/apps-ecommerce-product-details/${product.row.original.id}`}
+                    to={`/blog-details/${product.row.original.id}`}
                     className="text-dark"
                   >
                     {" "}
@@ -191,12 +164,12 @@ const Blogs = (props) => {
                 <i className="ri-more-fill" />
               </DropdownToggle>
               <DropdownMenu className="dropdown-menu-end">
-                <DropdownItem href={`apps-ecommerce-product-details/${cellProps.row.original.id}`}>
+                <DropdownItem href={`blog-details/${cellProps.row.original.id}`}>
                   <i className="ri-eye-fill align-bottom me-2 text-muted"></i>{" "}
                   Үзэх
                 </DropdownItem>
 
-                <DropdownItem href="apps-ecommerce-add-product">
+                <DropdownItem href={`blog-edit/${cellProps.row.original.id}`}>
                   <i className="ri-pencil-fill align-bottom me-2 text-muted"></i>{" "}
                   Өөрчлөх
                 </DropdownItem>
@@ -258,9 +231,7 @@ const Blogs = (props) => {
                               { active: activeTab === "1" },
                               "fw-semibold text-body"
                             )}
-                            onClick={() => {
-                              toggleTab("1", "all");
-                            }}
+                           
                             href="#"
                           >
                             Бүгд{" "}
@@ -302,7 +273,7 @@ const Blogs = (props) => {
                         divClass="table-responsive mb-1"
                         tableClass="mb-0 align-middle table-borderless"
                         theadClass="table-light text-muted"
-                        isProductsFilter={true}
+                        isCustomerFilter={true}
                         SearchPlaceholder={"Нийтлэл хайх..."}
                       />
                     </>
@@ -319,7 +290,7 @@ const Blogs = (props) => {
                         </div>
 
                         <div className="mt-4">
-                          <h5>Нийтлэл олдсонгеи</h5>
+                          <h5>Нийтлэл олдсонгүй</h5>
                         </div>
                       </div>
                     </>

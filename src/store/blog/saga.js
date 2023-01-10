@@ -10,11 +10,10 @@ import {
 } from "./actionType";
 
 import {
-  ecommerceApiResponseSuccess,
-  ecommerceApiResponseError,
   deleteBlogSuccess,
   deleteBlogFail,
-
+blogApiResponseError,
+blogApiResponseSuccess
 } from "./action";
 
 //Include Both Helper File with needed methods
@@ -26,9 +25,9 @@ import {
 function* getBlogs() {
   try {
     const response = yield call(getBlogsApi);
-    yield put(ecommerceApiResponseSuccess(GET_BLOGS, response.data));
+    yield put(blogApiResponseSuccess(GET_BLOGS, response.data));
   } catch (error) {
-    yield put(ecommerceApiResponseError(GET_BLOGS, error));
+    yield put(blogApiResponseError(GET_BLOGS, error));
   }
 }
 
@@ -54,7 +53,7 @@ export function* watchDeleteBlogs() {
 
 
 
-function* ecommerceSaga() {
+function* feedSaga() {
   yield all([
     fork(watchGetBlogs),
     fork(watchDeleteBlogs),
@@ -62,4 +61,4 @@ function* ecommerceSaga() {
   ]);
 }
 
-export default ecommerceSaga;
+export default feedSaga;

@@ -12,6 +12,7 @@ import Ecommerce from "./ecommerce/reducer";
 
 // Dashboard Ecommerce
 import DashboardEcommerce from "./dashboardEcommerce/reducer";
+import Feed from "./blog/reducer";
 
 const rootReducer = combineReducers({
   // public
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   Profile,
   Ecommerce,
   DashboardEcommerce,
+  Feed
 });
 
 export default rootReducer;

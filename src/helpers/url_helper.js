@@ -7,7 +7,7 @@ export const POST_FAKE_JWT_LOGIN = "/post-jwt-login";
 export const POST_EDIT_JWT_PROFILE = "/post-jwt-profile";
 export const POST_EDIT_PROFILE = "/user";
 // blog
-export const GET_BLOGS = "/blog";
+export const GET_BLOGS = "/blogs";
 export const DELETE_BLOG = "/blogs";
 // Ecommerce
 // Product

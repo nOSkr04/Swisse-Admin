@@ -238,7 +238,7 @@ const EcommerceProducts = (props) => {
                   Үзэх
                 </DropdownItem>
 
-                <DropdownItem href="apps-ecommerce-add-product">
+                <DropdownItem href={`apps-ecommerce-edit-product/${cellProps.row.original.id}`}>
                   <i className="ri-pencil-fill align-bottom me-2 text-muted"></i>{" "}
                   Өөрчлөх
                 </DropdownItem>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BreadCrumb from "../../Components/Common/BreadCrumb";
 import {
   Card,
@@ -19,7 +19,7 @@ import { useDispatch } from "react-redux";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Dropzone from "react-dropzone";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 //formik
 import { useFormik } from "formik";
@@ -37,13 +37,24 @@ import axios from "axios";
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
-const BlogAdd = (props) => {
+const BlogEdit = (props) => {
   document.title = "Алтан заан ХХК || Нийтлэл нэмэх";
+  let { id } = useParams();
 
   const history = useNavigate();
-  const [customActiveTab, setcustomActiveTab] = useState("1");
-  const [dest,setDest] = useState("")
-
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://altanzaan.org/api/v1/blogs/" + id)
+      .then((res) => {
+        setContact(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+  const [contact,setContact] = useState([])
+  const [dest,setDest] = useState(contact.description ? contact.description : "")
   const [selectedFiles, setselectedFiles] = useState([]);
 
   function handleAcceptedFiles(files) {
@@ -74,15 +85,15 @@ const BlogAdd = (props) => {
     enableReinitialize: true,
 
     initialValues: {
-      title: "",
-      shortDescription: "",
+      title: contact.title ? contact.title : "",
+      shortDescription: contact.shortDescription ? contact.shortDescription : "",
     },
     validationSchema: Yup.object({
       title: Yup.string().required("Нийтлэлны нэр заавал байх ёстой"),
     }),
     onSubmit: (values) => {
       axios
-        .post("https://altanzaan.org/api/v1/blogs", {
+        .put(`https://altanzaan.org/api/v1/blogs/${id}`, {
           title: values.title,
           shortDescription: values.shortDescription,
           description: dest,
@@ -109,6 +120,9 @@ const BlogAdd = (props) => {
         .catch((err) => console.log(err));
     },
   });
+  if(!contact){
+    return null
+  }
   return (
     <div className="page-content">
       <Container fluid>
@@ -265,4 +279,4 @@ const BlogAdd = (props) => {
   );
 };
 
-export default BlogAdd;
+export default BlogEdit;
